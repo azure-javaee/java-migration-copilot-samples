@@ -1,18 +1,22 @@
 package com.azure.sample;
 
+import com.azure.sample.util.MyBatisUtil;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
-import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.naming.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 public class AddStudentServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(AddStudentServlet.class.getName());
+
+    private static final Logger logger = Logger.getLogger(AddStudentServlet.class);
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
@@ -20,35 +24,38 @@ public class AddStudentServlet extends HttpServlet {
         String major = request.getParameter("major");
         boolean success = false;
         String errorMsg = null;
+        SqlSession session = null;
         try {
             logger.info("Starting to add student: name=" + name + ", email=" + email + ", major=" + major);
-            Context ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/StudentDB");
-            try (Connection conn = ds.getConnection();
-                 PreparedStatement ps = conn.prepareStatement("INSERT INTO student_profiles (name, email, major) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-                ps.setString(1, name);
-                ps.setString(2, email);
-                ps.setString(3, major);
-                int rows = ps.executeUpdate();
-                if (rows > 0) {
-                    success = true;
-                    logger.info("Student added successfully, sending email to: " + email);
-                    // Send email notification
-                    sendEmail(email, name);
-                } else {
-                    logger.warning("No rows inserted for student: " + name);
-                }
+            session = MyBatisUtil.getSqlSessionFactory().openSession();
+            Map<String, Object> params = new HashMap<>();
+            params.put("name", name);
+            params.put("email", email);
+            params.put("major", major);
+            int rows = session.insert("com.azure.sample.StudentMapper.addStudent", params);
+            if (rows > 0) {
+                success = true;
+                logger.info("Student added successfully, sending email to: " + email);
+                session.commit();
+                // Send email notification
+                sendEmail(email, name);
+            } else {
+                logger.warn("No rows inserted for student: " + name);
             }
         } catch (Exception e) {
-            logger.severe("Error adding student: " + e.getMessage());
+            logger.error("Error adding student: " + e.getMessage());
             errorMsg = e.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
         if (success) {
             logger.info("Redirecting to HelloServlet after successful add.");
             response.setContentType("text/plain");
-            response.getWriter().write("Studnet added successfully.");
+            response.getWriter().write("Student added successfully.");
         } else {
-            logger.warning("Add student failed: " + errorMsg);
+            logger.warn("Add student failed: " + errorMsg);
             request.setAttribute("errorMsg", errorMsg != null ? errorMsg : "Failed to add student.");
             request.getRequestDispatcher("/add_student_profile.jsp").forward(request, response);
         }

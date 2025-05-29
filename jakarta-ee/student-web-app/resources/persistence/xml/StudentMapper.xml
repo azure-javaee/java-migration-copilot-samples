@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.azure.sample.StudentMapper">
+
+    <select id="listStudent" resultType="com.azure.sample.StudentProfile">
+        SELECT id, name, email FROM student_profiles
+    </select>
+
+    <insert id="addStudent" parameterType="java.util.Map">
+        INSERT INTO student_profiles (name, email, major) VALUES (#{name}, #{email}, #{major})
+    </insert>
+
+</mapper>

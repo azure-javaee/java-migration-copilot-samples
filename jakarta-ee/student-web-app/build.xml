@@ -18,8 +18,12 @@
         <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
             <classpath>
                 <fileset dir="${lib.dir}" includes="**/*.jar"/>
+                <fileset dir="D:\lib\dev" includes="**/*.jar"/>
             </classpath>
         </javac>
+        <copy todir="${build.dir}">
+            <fileset dir="resources"/>
+        </copy>
     </target>
 
     <target name="war" depends="compile">
