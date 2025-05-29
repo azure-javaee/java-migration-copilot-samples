@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myBean" class="com.example.MyBean">
+        <property name="name" value="Spring Framework Example"/>
+        <property name="age" value="30"/>
+    </bean>
+
+    <bean id="schemaNameProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:ca/on/gov/edu/coreft/persistence/xml/ucm_schema.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

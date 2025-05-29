@@ -1,4 +1,4 @@
-package com.azure.sample;
+package ca.on.gov.edu.coreft;
 import java.io.Serializable;
 
 public class StudentProfile implements Serializable {

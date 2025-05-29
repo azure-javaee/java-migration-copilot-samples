@@ -1,8 +1,9 @@
+package ca.on.gov.edu.coreft;
 
-package com.azure.sample;
+import com.tivoli.pd.jasn1.attr_t;
 
-import com.azure.sample.util.MyBatisUtil;
-import org.apache.ibatis.session.SqlSession;
+import ca.on.gov.edu.coreft.util.MyBatisUtil;
+import com.ibatis.sqlmap.client.SqlMapSession;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -31,11 +32,11 @@ public class StudentProfileListServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head><title>Student Profile List</title></head><body>");
             out.println("<h2>Student Profile List</h2>");
-            SqlSession session = null;
+            SqlMapSession session = null;
             try {
-                session = MyBatisUtil.getSqlSessionFactory().openSession();
+                session = MyBatisUtil.getSqlMapClient().openSession();
 
-                List<StudentProfile> students = session.selectList("com.azure.sample.StudentMapper.listStudent");
+                List<StudentProfile> students = (List<StudentProfile>) session.queryForList("com.azure.sample.StudentMapper.listStudent");
                 out.println("<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th></tr>");
                 for (StudentProfile student : students) {
                     out.println("<tr><td>" + student.getId() + "</td><td>" + student.getName() + "</td><td>" + student.getEmail() + "</td></tr>");

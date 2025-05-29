@@ -1,4 +1,4 @@
-package com.azure.sample;
+package ca.on.gov.edu.coreft;
 import org.apache.log4j.Logger;
 
 import java.io.*;

@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>AddStudentServlet</servlet-name>
-        <servlet-class>com.azure.sample.AddStudentServlet</servlet-class>
+        <servlet-class>ca.on.gov.edu.coreft.AddStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddStudentServlet</servlet-name>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>com.azure.sample.HelloWorldServlet</servlet-class>
+        <servlet-class>ca.on.gov.edu.coreft.HelloWorldServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>StudentProfileListServlet</servlet-name>
-        <servlet-class>com.azure.sample.StudentProfileListServlet</servlet-class>
+        <servlet-class>ca.on.gov.edu.coreft.StudentProfileListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentProfileListServlet</servlet-name>

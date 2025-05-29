@@ -1,8 +1,12 @@
-package com.azure.sample;
+package ca.on.gov.edu.coreft;
 
-import com.azure.sample.util.MyBatisUtil;
-import org.apache.ibatis.session.SqlSession;
+import com.tivoli.pd.jasn1.attr_t;
+
+import ca.on.gov.edu.coreft.util.MyBatisUtil;
+import com.ibatis.sqlmap.client.SqlMapSession;
+
 import org.apache.log4j.Logger;
+
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,24 +28,20 @@ public class AddStudentServlet extends HttpServlet {
         String major = request.getParameter("major");
         boolean success = false;
         String errorMsg = null;
-        SqlSession session = null;
+        SqlMapSession session = null;
         try {
             logger.info("Starting to add student: name=" + name + ", email=" + email + ", major=" + major);
-            session = MyBatisUtil.getSqlSessionFactory().openSession();
+            session = MyBatisUtil.getSqlMapClient().openSession();
             Map<String, Object> params = new HashMap<>();
             params.put("name", name);
             params.put("email", email);
             params.put("major", major);
-            int rows = session.insert("com.azure.sample.StudentMapper.addStudent", params);
-            if (rows > 0) {
-                success = true;
-                logger.info("Student added successfully, sending email to: " + email);
-                session.commit();
-                // Send email notification
-                sendEmail(email, name);
-            } else {
-                logger.warn("No rows inserted for student: " + name);
-            }
+            Object key = session.insert("com.azure.sample.StudentMapper.addStudent", params);
+            success = true;
+            logger.info("Student added successfully, sending email to: " + email);
+            session.commitTransaction();
+            // Send email notification
+            sendEmail(email, name);
         } catch (Exception e) {
             logger.error("Error adding student: " + e.getMessage());
             errorMsg = e.getMessage();

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.azure.sample.StudentProfile" %>
+<%@ page import="ca.on.gov.edu.coreft.StudentProfile" %>
 <html>
 <head>
     <title>Open Liberty Ant Project</title>
