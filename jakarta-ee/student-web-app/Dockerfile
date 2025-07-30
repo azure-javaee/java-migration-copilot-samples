@@ -1,4 +1,4 @@
-FROM openliberty/open-liberty:kernel-slim-java11-openj9-ubi
+FROM openliberty/open-liberty:kernel-slim-java17-openj9-ubi
 
 # Copy Liberty configuration
 COPY --chown=1001:0 liberty_config/server-docker.xml /config/server.xml
