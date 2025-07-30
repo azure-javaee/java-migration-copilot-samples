@@ -36,11 +36,11 @@
     <applicationMonitor updateTrigger="mbean"/>
 
     <library id="devLibrary">
-        <fileset dir="D:\lib\dev" includes="*.jar"/>
+        <fileset dir="${env.DEV_LIB_DIR}" includes="**/*.jar"/>
     </library>
 
     <library id="mysql-lib">
-        <fileset dir="D:\lib\mysql" includes="*.jar"/>
+        <fileset dir="${env.MYSQL_LIB_DIR}" includes="**/*.jar"/>
     </library>
     <dataSource id="StudentDB" jndiName="jdbc/StudentDB">
         <jdbcDriver libraryRef="mysql-lib"/>
@@ -51,6 +51,5 @@
     </dataSource>
 
     <webApplication location="OpenLibertyApp.war" contextRoot="/" applicationName="OpenLibertyApp">
-        <classloader commonLibraryRef="devLibrary"/>
     </webApplication>
 </server>

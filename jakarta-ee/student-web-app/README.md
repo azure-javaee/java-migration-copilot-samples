@@ -12,36 +12,15 @@ This project is configured for Open Liberty with the following features enabled:
 - appSecurity-3.0
 - bells-1.0
 
+Java 11.
+
 Architecture:
 
 !["Architecture"](assets/arch.png)
 
-## Build War
+## Getting Started
 
-To build the project, run:
 
-```
-ant clean
-ant war
-```
-
-## Prepare Database
-
-- Create database with your way
-- Update your database configuration on `servers/defaultServer/server.xml`
-    - JDBC URL
-    - User name
-    - Password
-- Run database/create_table.sql to create tables
-- Update <library id="mysql-lib"> from server.xml, move mysql connector to this directory
-
-## Deploy
-
-1. Create open liberty server: `.\server.bat create {yourservername}`
-2. Copy servers/defaultServer/server.xml to your open liberty server's directory. For example, that's `D:\open-liberty\openliberty-25.0.0.4\wlp\usr\servers\jimmyserver` in my local.
-3. Build war package
-4. Copy war to your open liberty server's apps directory. For example, that's `D:\open-liberty\openliberty-25.0.0.4\wlp\usr\servers\jimmyserver\apps` in my local.
-5. Run `.\server.bat start {yourservername}` to startup your server
 
 ## Student Profiles
 
@@ -53,4 +32,55 @@ ant war
 
 ```bash
 curl -XPOST http://localhost:9080/addStudent?name=test&major=test&email=test@microsoft.com
+```
+
+## Docker Deployment
+
+### Prerequisites
+- Docker and Docker Compose installed
+- Internet connection (for downloading MySQL connector)
+
+### Quick Start
+1. Run the setup script to prepare the environment:
+   ```bash
+   # Linux/Mac
+   ./setup-docker.sh
+   
+   # Windows
+   setup-docker.bat
+   ```
+
+2. Start the application and database:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. Access the application:
+   - Student Profile List: http://localhost:9080/studentProfileList
+   - Add Student: http://localhost:9080/
+
+### Manual Setup (if script fails)
+1. Create `mysql-connector` directory
+2. Download MySQL Connector/J 8.0.33 and place it in `mysql-connector/mysql-connector-java-8.0.33.jar`
+3. Build the application: `ant clean war`
+4. Run: `docker-compose up --build`
+
+### Docker Services
+- **MySQL Database**: Runs on port 3306 with database `studentdb`
+- **Student Web App**: Runs on ports 9080 (HTTP) and 9443 (HTTPS)
+
+### Environment Variables
+The Docker setup uses these key environment variables:
+- `JDBC_URL`: MySQL connection string
+- `DB_USER`: Database username (default: `student`)
+- `DB_PASSWORD`: Database password (default: `studentpass`)
+
+### Stopping the Application
+```bash
+docker-compose down
+```
+
+To remove all data:
+```bash
+docker-compose down -v
 ```

@@ -1,7 +1,5 @@
 package ca.on.gov.edu.coreft;
 
-import com.tivoli.pd.jasn1.attr_t;
-
 import ca.on.gov.edu.coreft.util.MyBatisUtil;
 import com.ibatis.sqlmap.client.SqlMapSession;
 

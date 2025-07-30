@@ -1,0 +1,20 @@
+# Local build configuration
+# Copy this file to local.properties and customize for your environment
+# This file should be added to .gitignore to avoid committing local paths
+
+# Override library paths for your local environment
+# Examples:
+# Windows:
+# dev.lib.dir=D:\\lib\\dev
+# mysql.lib.dir=D:\\lib\\mysql
+
+# Linux/Mac:
+# dev.lib.dir=/home/user/lib/dev
+# mysql.lib.dir=/home/user/lib/mysql
+
+# Java settings (if different from defaults)
+# java.source=11
+# java.target=11
+
+# Application name (if you want to change it)
+# app.name=StudentWebApp
