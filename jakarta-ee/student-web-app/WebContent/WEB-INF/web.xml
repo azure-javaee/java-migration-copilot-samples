@@ -32,9 +32,15 @@
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
     
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    <!-- Index Servlet to handle root path with student data -->
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>ca.on.gov.edu.coreft.IndexServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <!-- Existing Servlets for backward compatibility -->
     <servlet>

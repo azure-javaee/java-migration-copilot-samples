@@ -48,7 +48,7 @@
             </div>
         <% } %>
 
-        <form action="/add-student" method="post">
+        <form action="/addStudent" method="post">
             <div class="form-group">
                 <label for="name">Student Name:</label>
                 <input type="text" id="name" name="name" required placeholder="Enter student's full name">

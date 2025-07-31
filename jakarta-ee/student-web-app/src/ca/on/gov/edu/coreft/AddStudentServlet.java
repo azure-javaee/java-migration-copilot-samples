@@ -20,6 +20,13 @@ public class AddStudentServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(AddStudentServlet.class);
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("Displaying add student form");
+        // Forward to the add student form JSP
+        request.getRequestDispatcher("/add_student_profile.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");

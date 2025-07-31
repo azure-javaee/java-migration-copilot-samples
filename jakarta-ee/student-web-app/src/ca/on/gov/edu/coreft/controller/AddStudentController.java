@@ -34,13 +34,18 @@ public class AddStudentController {
         logger.info("Adding new student: " + name + ", " + email + ", " + major);
         
         try {
-            // For now, we'll create a student profile object
-            // In a real implementation, you would add a method to StudentService to save the student
-            StudentProfile newStudent = new StudentProfile(0, name, email, major);
-            logger.info("Student profile created: " + newStudent.getName());
+            // Save the student to the database using StudentService
+            boolean success = studentService.saveStudent(name, email, major);
             
-            redirectAttributes.addFlashAttribute("successMessage", 
-                "Student " + name + " has been added successfully!");
+            if (success) {
+                logger.info("Student saved successfully: " + name);
+                redirectAttributes.addFlashAttribute("successMessage", 
+                    "Student " + name + " has been added successfully!");
+            } else {
+                logger.warn("Failed to save student: " + name);
+                redirectAttributes.addFlashAttribute("errorMessage", 
+                    "Failed to save student. Please try again.");
+            }
             
         } catch (Exception e) {
             logger.error("Error adding student: " + e.getMessage(), e);
