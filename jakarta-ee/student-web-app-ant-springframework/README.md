@@ -9,7 +9,7 @@ See [project details](doc/architecture.md).
 ## Getting Started
 
 ### Prerequisites
-- **Java 17** or higher
+- **Java 11** or higher
 - **Apache Ant** (for building)
 - **Docker & Docker Compose** (recommended)
 

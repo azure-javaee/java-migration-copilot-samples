@@ -1,5 +1,5 @@
 1. **Install dependencies:**
-   - Java 17+
+   - Java 11+
    - Apache Ant
    - MySQL 8.0
 
