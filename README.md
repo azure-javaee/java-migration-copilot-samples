@@ -10,7 +10,7 @@
 
 - [Todo Web API with Oracle Database](https://github.com/Azure-Samples/java-migration-copilot-samples/tree/main/todo-web-api-use-oracle-db) A To-do application using Oracle database for storage. It leverages Oracle-specific SQL features and data types, for instance, VARCHAR2. This sample migrates the application to use Azure Database for PostgreSQL instead.
 
-- [Student Web App - Jakarta EE](https://github.com/Azure-Samples/java-migration-copilot-samples/tree/main/jakarta-ee/student-web-app) A Java EE web application running on Open Liberty with a hybrid architecture that supports both traditional servlets and Spring MVC. The application manages student profiles with CRUD operations and demonstrates migrating from Ant to Maven and Java EE to Jakarta EE. 
+- [Student Web App - Jakarta EE](jakarta-ee/student-web-app) A Java EE web application running on Open Liberty with a hybrid architecture that supports both traditional servlets and Spring MVC. The application manages student profiles with CRUD operations and demonstrates migrating from Ant to Maven and Java EE to Jakarta EE. 
   
 ## Branches
 
