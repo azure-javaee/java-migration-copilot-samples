@@ -1,47 +1,24 @@
 # Open Liberty Ant Project
 
-This project is configured for Open Liberty with the following features enabled:
-- localConnector-1.0
-- servlet-4.0
-- jsp-2.3
-- transportSecurity-1.0
-- jaxws-2.2
-- jdbc-4.3
-- jndi-1.0
-- javaMail-1.6
-- appSecurity-3.0
-- bells-1.0
+## Project Architecture
 
-Java 11.
-
-Architecture:
-
-!["Architecture"](assets/arch.png)
+See [project details](doc/architecture.md).
 
 ## Getting Started
 
-
-
-## Student Profiles
-
-1. View localhost:9080/studentProfileList to watch student profiles list
-
-!["Architecture"](assets/student_profiles_list.png)
-
-2. Add new student
-
-```bash
-curl -XPOST http://localhost:9080/addStudent?name=test&major=test&email=test@microsoft.com
-```
-
-## Docker Deployment
-
 ### Prerequisites
-- Docker and Docker Compose installed
-- Internet connection (for downloading MySQL connector)
+- **Java 17** or higher
+- **Apache Ant** (for building)
+- **Docker & Docker Compose** (recommended)
 
-### Quick Start
-1. Run the setup script to prepare the environment:
+### Quick Start (Docker - Recommended)
+
+1. **Clone and navigate to the project:**
+   ```bash
+   cd student-web-app
+   ```
+
+2. **Run setup script:**
    ```bash
    # Linux/Mac
    ./setup-docker.sh
@@ -50,37 +27,38 @@ curl -XPOST http://localhost:9080/addStudent?name=test&major=test&email=test@mic
    setup-docker.bat
    ```
 
-2. Start the application and database:
+3. **Start the application:**
    ```bash
    docker-compose up --build
    ```
 
-3. Access the application:
-   - Student Profile List: http://localhost:9080/studentProfileList
-   - Add Student: http://localhost:9080/
+4. **Access the application:**
+   - Home page: http://localhost:9080/
 
-### Manual Setup (if script fails)
-1. Create `mysql-connector` directory
-2. Download MySQL Connector/J 8.0.33 and place it in `mysql-connector/mysql-connector-j-8.0.33.jar`
-3. Build the application: `ant clean war`
-4. Run: `docker-compose up --build`
+### Manual Setup (Without Docker)
 
-### Docker Services
-- **MySQL Database**: Runs on port 3306 with database `studentdb`
-- **Student Web App**: Runs on ports 9080 (HTTP) and 9443 (HTTPS)
+See [maunual setup](doc/manual-setup.md).
 
-### Environment Variables
-The Docker setup uses these key environment variables:
-- `JDBC_URL`: MySQL connection string
-- `DB_USER`: Database username (default: `student`)
-- `DB_PASSWORD`: Database password (default: `studentpass`)
+### Verification
 
-### Stopping the Application
+Test the application with:
 ```bash
-docker-compose down
+# Add a student
+curl -X POST "http://localhost:9080/app/add-student" \
+  -d "name=Alice Johnson" \
+  -d "email=alice@example.com" \
+  -d "major=Biology"
+
+# View students
+curl http://localhost:9080/studentProfileList
+# or
+# curl http://localhost:9080/app/students
 ```
 
-To remove all data:
-```bash
-docker-compose down -v
-```
+**Student Profiles List View:**
+Access the pages from browser: http://localhost:9080/
+
+![Student Profiles List](assets/student_profiles_list.png)
+
+
+
