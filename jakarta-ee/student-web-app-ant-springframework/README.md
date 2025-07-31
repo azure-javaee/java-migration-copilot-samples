@@ -60,7 +60,7 @@ curl http://localhost:9080/studentProfileList
 **Student Profiles List View:**
 Access the pages from browser: http://localhost:9080/
 
-<div align="center">
+<div align="left">
   <img src="assets/student_profiles_list.png" alt="Student Profiles List" width="50%"/>
 </div>
 
