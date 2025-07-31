@@ -50,8 +50,10 @@ public class AddStudentServlet extends HttpServlet {
         }
         if (success) {
             logger.info("Redirecting to HelloServlet after successful add.");
-            response.setContentType("text/plain");
-            response.getWriter().write("Student added successfully.");
+            response.setContentType("text/html");
+            response.getWriter().write("<h2>Student added successfully!</h2>");
+            response.getWriter().write("<p><a href='studentProfileList'>View All Student Profiles</a></p>");
+            response.getWriter().write("<p><a href='/'>Add Another Student</a></p>");
         } else {
             logger.warn("Add student failed: " + errorMsg);
             request.setAttribute("errorMsg", errorMsg != null ? errorMsg : "Failed to add student.");

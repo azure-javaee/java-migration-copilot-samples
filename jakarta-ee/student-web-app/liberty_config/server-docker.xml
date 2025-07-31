@@ -27,7 +27,7 @@
     <applicationMonitor updateTrigger="mbean"/>
 
     <library id="mysql-lib">
-        <fileset dir="${env.MYSQL_LIB_DIR}" includes="**/*.jar"/>
+        <fileset dir="${env.MYSQL_LIB_DIR}" includes="*.jar"/>
     </library>
     
     <dataSource id="StudentDB" jndiName="jdbc/StudentDB">
@@ -35,8 +35,10 @@
         <properties URL="${env.JDBC_URL}"
             user="${env.DB_USER}"
             password="${env.DB_PASSWORD}"/>
+        <connectionManager maxPoolSize="10" minPoolSize="2"/>
     </dataSource>
 
     <webApplication location="OpenLibertyApp.war" contextRoot="/" applicationName="OpenLibertyApp">
+        <classloader commonLibraryRef="mysql-lib" delegation="parentLast"/>
     </webApplication>
 </server>

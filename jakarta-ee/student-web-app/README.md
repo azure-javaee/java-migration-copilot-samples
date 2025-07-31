@@ -61,7 +61,7 @@ curl -XPOST http://localhost:9080/addStudent?name=test&major=test&email=test@mic
 
 ### Manual Setup (if script fails)
 1. Create `mysql-connector` directory
-2. Download MySQL Connector/J 8.0.33 and place it in `mysql-connector/mysql-connector-java-8.0.33.jar`
+2. Download MySQL Connector/J 8.0.33 and place it in `mysql-connector/mysql-connector-j-8.0.33.jar`
 3. Build the application: `ant clean war`
 4. Run: `docker-compose up --build`
 

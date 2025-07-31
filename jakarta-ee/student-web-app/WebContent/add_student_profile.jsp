@@ -15,6 +15,6 @@
         <input type="text" id="major" name="major" required><br><br>
         <input type="submit" value="Add Student">
     </form>
-    <p><a href="HelloServlet">Back to Student List</a></p>
+    <p><a href="studentProfileList">Back to Student List</a></p>
 </body>
 </html>

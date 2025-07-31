@@ -48,9 +48,15 @@
                 <exclude name="WEB-INF/lib/**"/>
             </fileset>
             <classes dir="${build.dir}"/>
-            <!-- Explicitly include all JAR files from lib subdirectories -->
-            <lib dir="${web.dir}/WEB-INF/lib">
-                <include name="**/*.jar"/>
+            <!-- Flatten the library structure to ensure standard WAR format -->
+            <lib dir="${web.dir}/WEB-INF/lib/log4j">
+                <include name="*.jar"/>
+            </lib>
+            <lib dir="${web.dir}/WEB-INF/lib/jackson">
+                <include name="*.jar"/>
+            </lib>
+            <lib dir="${web.dir}/WEB-INF/lib/mybatis">
+                <include name="*.jar"/>
             </lib>
         </war>
     </target>

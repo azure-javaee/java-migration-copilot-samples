@@ -31,16 +31,16 @@ if not exist "compile-lib\javamail-api.jar" (
 )
 
 REM Check if MySQL Connector/J exists
-if not exist "mysql-connector\mysql-connector-java-8.0.33.jar" (
+if not exist "mysql-connector\mysql-connector-j-8.0.33.jar" (
     echo Downloading MySQL Connector/J...
-    curl -L -o mysql-connector\mysql-connector-java-8.0.33.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.33/mysql-connector-java-8.0.33.jar
+    curl -L -o mysql-connector\mysql-connector-j-8.0.33.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.33/mysql-connector-j-8.0.33.jar
     
     if %errorlevel% equ 0 (
         echo MySQL Connector/J downloaded successfully
     ) else (
         echo Failed to download MySQL Connector/J. Please download it manually:
-        echo URL: https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.33/mysql-connector-java-8.0.33.jar
-        echo Save it to: mysql-connector\mysql-connector-java-8.0.33.jar
+        echo URL: https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.33/mysql-connector-j-8.0.33.jar
+        echo Save it to: mysql-connector\mysql-connector-j-8.0.33.jar
     )
 ) else (
     echo MySQL Connector/J already exists
