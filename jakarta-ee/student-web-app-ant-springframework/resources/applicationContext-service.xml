@@ -4,11 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="myBean" class="com.example.MyBean">
-        <property name="name" value="Spring Framework Example"/>
-        <property name="age" value="30"/>
-    </bean>
-
+    <!-- Schema name properties configuration -->
     <bean id="schemaNameProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>

@@ -17,7 +17,7 @@ See [project details](doc/architecture.md).
 
 1. **Clone and navigate to the project:**
    ```bash
-   cd student-web-app
+   cd student-web-app-ant-springframework
    ```
 
 2. **Run setup script:**

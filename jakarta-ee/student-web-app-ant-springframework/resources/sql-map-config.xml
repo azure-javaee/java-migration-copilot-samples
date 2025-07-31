@@ -12,5 +12,4 @@
     </transactionManager>
 
     <sqlMap resource="ca/on/gov/edu/msfaa/shared/persistence/xml/Student_SqlMap.xml"/>
-    <sqlMap resource="ca/on/gov/edu/msfaa/shared/persistence/xml/Test_SqlMap.xml"/>
 </sqlMapConfig>

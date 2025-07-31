@@ -24,30 +24,45 @@ public class StudentProfileListServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.info("start to list student profile list");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        logger.info("Start to list student profile list");
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             out.println("<html><head><title>Student Profile List</title></head><body>");
             out.println("<h2>Student Profile List</h2>");
+            
             SqlMapSession session = null;
             try {
                 session = MyBatisUtil.getSqlMapClient().openSession();
 
+                @SuppressWarnings("unchecked")
                 List<StudentProfile> students = (List<StudentProfile>) session.queryForList("com.azure.sample.StudentMapper.listStudent");
-                out.println("<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th></tr>");
+                
+                out.println("<table border='1'><tr><th>ID</th><th>Name</th><th>Email</th><th>Major</th></tr>");
                 for (StudentProfile student : students) {
-                    out.println("<tr><td>" + student.getId() + "</td><td>" + student.getName() + "</td><td>" + student.getEmail() + "</td></tr>");
+                    out.println("<tr><td>" + student.getId() + "</td>" +
+                               "<td>" + student.getName() + "</td>" +
+                               "<td>" + student.getEmail() + "</td>" +
+                               "<td>" + student.getMajor() + "</td></tr>");
                 }
                 out.println("</table>");
                 out.println("<br/><br/><br/>");
                 out.println(objectMapper.writeValueAsString(students));
+                
             } catch (Exception ex) {
+                logger.error("Error retrieving student list: " + ex.getMessage(), ex);
                 out.println("<p>Error: " + ex.getMessage() + "</p>");
                 throw new RuntimeException(ex);
             } finally {
                 if (session != null) {
-                    session.close();
+                    try {
+                        session.close();
+                    } catch (Exception e) {
+                        logger.error("Error closing session: " + e.getMessage(), e);
+                    }
                 }
             }
             out.println("</body></html>");

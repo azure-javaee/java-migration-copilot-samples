@@ -2,18 +2,22 @@ package ca.on.gov.edu.coreft;
 
 import ca.on.gov.edu.coreft.util.MyBatisUtil;
 import com.ibatis.sqlmap.client.SqlMapSession;
-
 import org.apache.log4j.Logger;
-
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.naming.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class AddStudentServlet extends HttpServlet {
 
@@ -27,34 +31,54 @@ public class AddStudentServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String major = request.getParameter("major");
         boolean success = false;
         String errorMsg = null;
         SqlMapSession session = null;
+        
         try {
             logger.info("Starting to add student: name=" + name + ", email=" + email + ", major=" + major);
             session = MyBatisUtil.getSqlMapClient().openSession();
+            session.startTransaction();
+            
             Map<String, Object> params = new HashMap<>();
             params.put("name", name);
             params.put("email", email);
             params.put("major", major);
-            Object key = session.insert("com.azure.sample.StudentMapper.addStudent", params);
-            success = true;
-            logger.info("Student added successfully, sending email to: " + email);
+            
+            session.insert("com.azure.sample.StudentMapper.addStudent", params);
             session.commitTransaction();
+            success = true;
+            
+            logger.info("Student added successfully, sending email to: " + email);
             // Send email notification
             sendEmail(email, name);
+            
         } catch (Exception e) {
-            logger.error("Error adding student: " + e.getMessage());
+            logger.error("Error adding student: " + e.getMessage(), e);
             errorMsg = e.getMessage();
+            if (session != null) {
+                try {
+                    session.endTransaction();
+                } catch (Exception rollbackEx) {
+                    logger.error("Error ending transaction: " + rollbackEx.getMessage(), rollbackEx);
+                }
+            }
         } finally {
             if (session != null) {
-                session.close();
+                try {
+                    session.close();
+                } catch (Exception e) {
+                    logger.error("Error closing session: " + e.getMessage(), e);
+                }
             }
         }
+        
         if (success) {
             logger.info("Redirecting to HelloServlet after successful add.");
             response.setContentType("text/html");

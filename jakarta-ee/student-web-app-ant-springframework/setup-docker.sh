@@ -63,8 +63,7 @@ if [ $? -eq 0 ]; then
     echo "Use: docker-compose up --build"
     echo ""
     echo "Once running, access the application at:"
-    echo "- Student Profile List: http://localhost:9080/studentProfileList"
-    echo "- Add Student: http://localhost:9080/"
+    echo "- Student: http://localhost:9080/"
 else
     echo "Failed to build application"
     exit 1
