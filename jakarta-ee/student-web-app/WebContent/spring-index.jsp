@@ -30,7 +30,6 @@
         <a href="/app/add-student">Add New Student (Spring)</a>
         <a href="/">Original Index</a>
         <a href="/studentProfileList">Legacy Student List</a>
-        <a href="/helloworld">Hello World</a>
     </div>
 
     <% 

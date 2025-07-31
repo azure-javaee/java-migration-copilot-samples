@@ -47,15 +47,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>ca.on.gov.edu.coreft.HelloWorldServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <url-pattern>/helloworld</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>StudentProfileListServlet</servlet-name>
         <servlet-class>ca.on.gov.edu.coreft.StudentProfileListServlet</servlet-class>
     </servlet>

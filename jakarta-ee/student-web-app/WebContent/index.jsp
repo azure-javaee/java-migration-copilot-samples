@@ -29,7 +29,6 @@
         <a href="/app/students">Spring Students</a>
         <a href="/app/add-student">Spring Add Student</a>
         <a href="/studentProfileList">Legacy Student List</a>
-        <a href="/helloworld">Hello World</a>
     </div>
 
     <% 
