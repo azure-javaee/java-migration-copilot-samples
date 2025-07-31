@@ -1,6 +1,6 @@
 # Open Liberty Ant Project
 
-This is a Java EE web application running on Open Liberty with a hybrid architecture that supports both traditional servlets and Spring MVC (5.3.39). The application manages student profiles with CRUD operations.
+A Java EE web application running on Open Liberty with a hybrid architecture that supports both traditional servlets and Spring MVC. The application manages student profiles with CRUD operations and demonstrates migrating from Ant to Maven and Java EE to Jakarta EE. 
 
 ## Project Architecture
 
