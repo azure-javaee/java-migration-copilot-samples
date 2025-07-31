@@ -9,7 +9,7 @@
         .header { background-color: #4CAF50; color: white; padding: 20px; margin: -30px -30px 30px -30px; border-radius: 10px 10px 0 0; }
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        input[type="text"], input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
         input[type="submit"] { background-color: #4CAF50; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
         input[type="submit"]:hover { background-color: #45a049; }
         .nav { margin-bottom: 20px; }
@@ -17,18 +17,20 @@
         .nav a:hover { text-decoration: underline; }
         .success { color: #3c763d; background-color: #dff0d8; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #d6e9c6; }
         .error { color: #a94442; background-color: #f2dede; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ebccd1; }
+        .spring-badge { background-color: #6DB33F; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Add Student Profile</h1>
+            <h1>Add Student Profile <span class="spring-badge">Spring MVC</span></h1>
             <p>Spring Framework 5.3 Integration</p>
         </div>
         
         <div class="nav">
-            <a href="/">← Back to Home</a>
-            <a href="/students">View All Students</a>
+            <a href="/app/">← Back to Spring Home</a>
+            <a href="/app/students">View All Students</a>
+            <a href="/">Original Index</a>
             <a href="/studentProfileList">Legacy Student List</a>
         </div>
 
@@ -48,7 +50,7 @@
             </div>
         <% } %>
 
-        <form action="/add-student" method="post">
+        <form action="/app/add-student" method="post">
             <div class="form-group">
                 <label for="name">Student Name:</label>
                 <input type="text" id="name" name="name" required placeholder="Enter student's full name">
@@ -65,12 +67,18 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Add Student">
+                <input type="submit" value="Add Student (Spring MVC)">
             </div>
         </form>
         
         <div style="margin-top: 30px; font-size: 12px; color: #666; border-top: 1px solid #eee; padding-top: 20px;">
-            <p><strong>Note:</strong> This form now uses Spring MVC for processing student data.</p>
+            <p><strong>Spring MVC Integration:</strong></p>
+            <ul>
+                <li>Form processing via Spring MVC Controller</li>
+                <li>URL: /app/add-student (POST)</li>
+                <li>Redirects to: /app/ (Spring home page)</li>
+                <li>Uses Spring's RedirectAttributes for flash messages</li>
+            </ul>
         </div>
     </div>
 </body>

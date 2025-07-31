@@ -9,6 +9,8 @@
         <feature>jndi-1.0</feature>
         <feature>javaMail-1.6</feature>
         <feature>appSecurity-3.0</feature>
+        <feature>springBoot-2.0</feature>
+        <feature>webProfile-8.0</feature>
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443"/>
@@ -38,7 +40,7 @@
         <connectionManager maxPoolSize="10" minPoolSize="2"/>
     </dataSource>
 
-    <webApplication location="OpenLibertyApp.war" contextRoot="/" applicationName="OpenLibertyApp">
+    <application location="OpenLibertyApp.war" context-root="/">
         <classloader commonLibraryRef="mysql-lib" delegation="parentLast"/>
-    </webApplication>
+    </application>
 </server>

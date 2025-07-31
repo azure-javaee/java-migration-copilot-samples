@@ -58,6 +58,9 @@
             <lib dir="${web.dir}/WEB-INF/lib/mybatis">
                 <include name="*.jar"/>
             </lib>
+            <lib dir="${web.dir}/WEB-INF/lib/spring">
+                <include name="*.jar"/>
+            </lib>
         </war>
     </target>
 </project>

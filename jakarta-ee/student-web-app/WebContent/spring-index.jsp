@@ -15,19 +15,20 @@
         .nav a:hover { text-decoration: underline; }
         .error { color: red; background-color: #ffe6e6; padding: 10px; margin: 10px 0; border-radius: 5px; }
         .info { color: #31708f; background-color: #d9edf7; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .spring-badge { background-color: #6DB33F; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Student Management System</h1>
+        <h1>Student Management System <span class="spring-badge">Spring MVC</span></h1>
         <p>Powered by Spring Framework 5.3 and Open Liberty</p>
     </div>
     
     <div class="nav">
-        <a href="/">Original Home</a>
-        <a href="/app/">Spring Home (NEW!)</a>
-        <a href="/app/students">Spring Students</a>
-        <a href="/app/add-student">Spring Add Student</a>
+        <a href="/app/">Spring Home</a>
+        <a href="/app/students">View All Students (Spring)</a>
+        <a href="/app/add-student">Add New Student (Spring)</a>
+        <a href="/">Original Index</a>
         <a href="/studentProfileList">Legacy Student List</a>
         <a href="/helloworld">Hello World</a>
     </div>
@@ -56,13 +57,11 @@
         </div>
     <% } %>
 
-    <h2>Student Profiles (Direct JSP Access)</h2>
+    <h2>Student Profiles (Spring MVC)</h2>
     
     <div class="info">
-        <strong>New!</strong> Spring Framework 5.3 has been integrated! Try the new Spring MVC pages:
-        <br>• <a href="/app/" style="color: #31708f;">Spring Home Page</a> - Full Spring MVC integration
-        <br>• <a href="/app/add-student" style="color: #31708f;">Spring Add Student</a> - Modern form handling
-        <br><br>This page shows direct JSP access (traditional approach).
+        <strong>Spring Framework Integration:</strong> This page is powered by Spring Framework 5.3 with Spring MVC!
+        <br><strong>URL Pattern:</strong> /app/* (Spring servlet mapping)
     </div>
     
     <table>
@@ -103,13 +102,23 @@
     </table>
     
     <div style="margin-top: 30px; font-size: 12px; color: #666;">
-        <p><strong>Technology Stack:</strong></p>
+        <p><strong>Spring Technology Stack:</strong></p>
         <ul>
-            <li>Spring Framework 5.3</li>
-            <li>Spring MVC</li>
-            <li>Open Liberty Application Server</li>
-            <li>MyBatis (iBatis) for Data Access</li>
-            <li>MySQL Database</li>
+            <li><strong>Spring Framework 5.3.39</strong> - Core framework</li>
+            <li><strong>Spring MVC</strong> - Web layer (/app/* mapping)</li>
+            <li><strong>Spring IoC Container</strong> - Dependency injection</li>
+            <li><strong>Open Liberty Application Server</strong> - Runtime environment</li>
+            <li><strong>MyBatis (iBatis)</strong> - Data access layer (preserved)</li>
+            <li><strong>MySQL Database</strong> - Data storage</li>
+        </ul>
+        
+        <p><strong>Available Endpoints:</strong></p>
+        <ul>
+            <li><code>/app/</code> - Spring MVC home page</li>
+            <li><code>/app/students</code> - Spring MVC student list</li>
+            <li><code>/app/add-student</code> - Spring MVC add student form</li>
+            <li><code>/</code> - Original index.jsp (direct access)</li>
+            <li><code>/studentProfileList</code> - Legacy servlet</li>
         </ul>
     </div>
 </body>
