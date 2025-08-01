@@ -1,68 +1,25 @@
-# Open Liberty Ant Project
+# Migrate a legacy Java EE Ant project to a Jakarta EE 10 Maven project
+
+This workshop guides you through migrating a legacy Java EE Ant project to a Jakarta EE 10 Maven project. After completing the workshop, the project will be fully migrated from Java EE to Jakarta EE 10, upgraded from Spring Framework 5.3.39 to 6.2.x, and ready to build with Maven.
+
+## About this Sample Project
 
 A Java EE web application running on Open Liberty with a hybrid architecture that supports both traditional servlets and Spring MVC. The application manages student profiles with CRUD operations and demonstrates migrating from Ant to Maven and Java EE to Jakarta EE. 
 
-## Project Architecture
+For the project architecture, see [project details](doc/architecture.md).
+For how to start this project, see [getting started](doc/getting-started.md)
 
-See [project details](doc/architecture.md).
+## Prerequisites
 
-## Getting Started
+- **Java 17** or higher
+- **Apache Ant**, tested version: `1.10.14`.
+- **Maven**, tested version: `3.8.7`.
+- **Docker & Docker Compose** (Optional, for running the sample application)
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [VS Code Extension: GitHub Copilot App Modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
+  - This extension depends on [VS Code Extension: GitHub Copilot App Modernization – Upgrade for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-upgrade). Both extensions will be installed automatically when you install **GitHub Copilot App Modernization**.
 
-### Prerequisites
-- **Java 11** or higher
-- **Apache Ant** (for building)
-- **Docker & Docker Compose** (recommended)
-
-### Quick Start (Docker - Recommended)
-
-1. **Clone and navigate to the project:**
-   ```bash
-   cd student-web-app
-   ```
-
-2. **Run setup script:**
-   ```bash
-   # Linux/Mac
-   ./setup-docker.sh
-   
-   # Windows
-   setup-docker.bat
-   ```
-
-3. **Start the application:**
-   ```bash
-   docker-compose up --build
-   ```
-
-4. **Access the application:**
-   - Home page: http://localhost:9080/
-
-### Manual Setup (Without Docker)
-
-See [maunual setup](doc/manual-setup.md).
-
-### Verification
-
-Test the application with:
-```bash
-# Add a student
-curl -X POST "http://localhost:9080/app/add-student" \
-  -d "name=Alice Johnson" \
-  -d "email=alice@example.com" \
-  -d "major=Biology"
-
-# View students
-curl http://localhost:9080/studentProfileList
-# or
-# curl http://localhost:9080/app/students
-```
-
-**Student Profiles List View:**
-Access the pages from browser: http://localhost:9080/
-
-<div align="left">
-  <img src="assets/student_profiles_list.png" alt="Student Profiles List" width="50%"/>
-</div>
+## Assess the Project
 
 
 
