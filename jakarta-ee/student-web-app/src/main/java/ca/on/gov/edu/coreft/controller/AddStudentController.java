@@ -2,7 +2,8 @@ package ca.on.gov.edu.coreft.controller;
 
 import ca.on.gov.edu.coreft.StudentProfile;
 import ca.on.gov.edu.coreft.service.StudentService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AddStudentController {
     
-    private static final Logger logger = Logger.getLogger(AddStudentController.class);
+    private static final Logger logger = LogManager.getLogger(AddStudentController.class);
     
     @Autowired
     private StudentService studentService;

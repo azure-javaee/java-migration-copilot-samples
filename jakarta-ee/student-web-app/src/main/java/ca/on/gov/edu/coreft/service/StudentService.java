@@ -3,7 +3,8 @@ package ca.on.gov.edu.coreft.service;
 import ca.on.gov.edu.coreft.StudentProfile;
 import ca.on.gov.edu.coreft.util.MyBatisUtil;
 import com.ibatis.sqlmap.client.SqlMapSession;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Map;
 @Service
 public class StudentService {
     
-    private static final Logger logger = Logger.getLogger(StudentService.class);
+    private static final Logger logger = LogManager.getLogger(StudentService.class);
     
     public List<StudentProfile> getAllStudents() {
         logger.info("Getting all students from database");

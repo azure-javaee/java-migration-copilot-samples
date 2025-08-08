@@ -2,8 +2,9 @@ package ca.on.gov.edu.coreft;
 
 import ca.on.gov.edu.coreft.util.MyBatisUtil;
 import com.ibatis.sqlmap.client.SqlMapSession;
-import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class StudentProfileListServlet extends HttpServlet {
 
-    private static final Logger logger = Logger.getLogger(StudentProfileListServlet.class);
+    private static final Logger logger = LogManager.getLogger(StudentProfileListServlet.class);
 
     private final ObjectMapper objectMapper;
 

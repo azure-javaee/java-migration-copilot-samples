@@ -2,7 +2,8 @@ package ca.on.gov.edu.coreft;
 
 import ca.on.gov.edu.coreft.util.MyBatisUtil;
 import com.ibatis.sqlmap.client.SqlMapSession;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class IndexServlet extends HttpServlet {
 
-    private static final Logger logger = Logger.getLogger(IndexServlet.class);
+    private static final Logger logger = LogManager.getLogger(IndexServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
