@@ -1,5 +1,6 @@
 package ca.on.gov.edu.coreft;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -7,7 +8,8 @@ import java.io.Serializable;
  * Contains basic information about a student including ID, name, email, and major.
  */
 public class StudentProfile implements Serializable {
-    
+
+    @Serial
     private static final long serialVersionUID = 1L;
     
     private int id;
